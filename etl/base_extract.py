@@ -24,7 +24,7 @@ def get():
 
         for i in range(len(links)):
             req = Request("GET", links[i])
-            
+
             try:
                 prepped = s.prepare_request(req)
                 resp = s.send(prepped)
