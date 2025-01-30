@@ -22,7 +22,8 @@ def get():
 
         except ValueError:
             print(f'O link não foi encontrado no arquivo JSON.')
-
+            return
+        
         s = Session()
 
         for i in range(len(links)):
