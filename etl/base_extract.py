@@ -20,6 +20,9 @@ def get():
             print(f'Chave dos Links não encontrada no arquivo JSON.')
             return
 
+        except ValueError:
+            print(f'O link não foi encontrado no arquivo JSON.')
+
         s = Session()
 
         for i in range(len(links)):
