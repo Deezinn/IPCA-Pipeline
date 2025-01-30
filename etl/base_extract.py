@@ -24,15 +24,17 @@ def get():
 
         for i in range(len(links)):
             req = Request("GET", links[i])
-            prepped = s.prepare_request(req)
-            resp = s.send(prepped)
-            print(f"O retorno da api {nomeLinks[i]} foi: {resp.status_code}")
+            
+            try:
+                prepped = s.prepare_request(req)
+                resp = s.send(prepped)
+                print(f"O retorno da api {nomeLinks[i]} foi: {resp.status_code}")
+            except Exception as e:
+                print(f"Erro ao fazer a requisição: {nomeLinks[i]}: {e}")
 
         s.close()
+
     except Exception as e:
-        print(f"Erro na requisição", e)
+        print(f"Erro geral", e)
 
 get()
-
-
-
