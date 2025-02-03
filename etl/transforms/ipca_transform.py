@@ -1,22 +1,44 @@
 from etl.base_extract import get
 import pandas as pd
 import json
+import os
+
+
+
+
+caminho_json = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../ibge.json"))
 
 class EtlIpca:
+
     def __init__(self):
         self.df = None
-
+        self.ipcaFormatado = None
 
     def load(self):
-        get()
+        """Aqui ficará a requisição http (get), ela retornará um status code
+        """
+        # get()
 
-    def transform(self,link):
-        data = pd.read_json(link)
-        self.df = pd.DataFrame(data)
-        self.df.to_csv('data/teste.csv', sep=',', index=False, encoding='utf-8', mode='a')
+    def transform(self):
+        try:
+            with open(caminho_json, "r", encoding="utf-8") as file:
+                dados = json.load(file)
+                nomeLinks = list(dados['links'].keys())
+                links = list(dados['links'].values())
+                print(links, 'aqui')
 
-    def loadAllMethods(self,link):
-            self.transform(link)
+                for i in range(len(dados['links'])):
+                    self.df = pd.read_json(links[i])
+                    self.ipcaFormatado = pd.DataFrame(self.df)
+                    self.ipcaFormatado.to_csv(f'{nomeLinks[i]}.csv', sep=',', decimal=';', encoding='utf-8', index=False)
+                    
+        except Exception as e:
+            print(e)
+
+    def loadAllMethods(self):
+        self.load()
+        self.transform()
+
 
 etlIpca = EtlIpca()
-etlIpca.loadAllMethods('https://apisidra.ibge.gov.br/values/t/118/n1/all/v/all/p/all/d/v306%202')
+etlIpca.loadAllMethods()

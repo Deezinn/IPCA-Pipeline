@@ -2,7 +2,6 @@ from requests import Request, Session
 import json
 import os
 
-
 caminho_json = os.path.abspath(os.path.join(os.path.dirname(__file__), "../ibge.json"))
 
 def get():
@@ -13,6 +12,7 @@ def get():
             dados = json.load(file)
             nomeLinks = list(dados['links'].keys())
             links = list(dados['links'].values())
+            
 
     except FileNotFoundError:
         print(f'Arquivo {caminho_json} não encontrado.')
