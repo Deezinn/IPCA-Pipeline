@@ -1,10 +1,13 @@
-from etl.base_extract import get
+from base_extract import get
 
-# class ETLPipeline:
-#     def __init__(self,extract):
-#         self.extract = extract()
-#         # self.transform = transform
-#         # self.load = load
+class ETLPipeline:
+    def __init__(self):
+        pass
 
-#     def runPipeline(self):
-#         self.extract()
+    def runPipeline(self):
+        get()
+        
+
+
+pipeline = ETLPipeline()
+pipeline.runPipeline()

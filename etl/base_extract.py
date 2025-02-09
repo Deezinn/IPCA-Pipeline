@@ -2,6 +2,7 @@ from requests import Request, Session
 import json
 import os
 import pandas as pd
+import psycopg2
 
 caminho_json = os.path.abspath(os.path.join(os.path.dirname(__file__), "../ibge.json"))
 
@@ -41,5 +42,4 @@ def get():
     except Exception as e:
         print('Deu problema na requisição', e)
     s.close()
-get()
 
