@@ -1,5 +1,4 @@
-# from base_extract import get as extract
-
+from etl.base_extract import get
 
 # class ETLPipeline:
 #     def __init__(self,extract):
