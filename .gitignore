@@ -7,6 +7,7 @@ __pycache__/
 *.so
 # Data csv
 Data*
+
 # Distribution / packaging
 .Python
 build/
