@@ -9,11 +9,6 @@ database_info = {
     "port" : os.getenv('DB_PORT'),
     "user" : os.getenv('DB_USER'),
     'password' : os.getenv('DB_PASSWORD'),
-<<<<<<< HEAD
     "dbname" : os.getenv('DB_NAME')
     }
 
-=======
-    "db_name" : os.getenv('DB_NAME')
-    }
->>>>>>> refs/remotes/origin/main
