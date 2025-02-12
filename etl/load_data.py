@@ -1,9 +1,5 @@
 import psycopg2
-import warnings
-warnings.filterwarnings("ignore", category=RuntimeWarning)
 from config.database import database_info
-
-
 
 def load():
 
@@ -21,6 +17,8 @@ def load():
     cur.close()
     conn.close()
     print('desconectou do banco')
+
+print(database_info)
 
 if __name__ == "__main__":
     load()
