@@ -1,12 +1,15 @@
 from base_extract import get
+from transforms.ipca_transform import transform
 
-class ETLPipeline:
+class ETLPipeline():
     def __init__(self):
-        pass
+        self.get = get()
+        self.transform = transform()
 
     def runPipeline(self):
-        get()
-        
+        self.get.loadAllMethods()
+        self.transform.loadAllMethods()
+
 
 
 pipeline = ETLPipeline()

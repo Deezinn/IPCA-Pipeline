@@ -6,40 +6,41 @@ import psycopg2
 
 caminho_json = os.path.abspath(os.path.join(os.path.dirname(__file__), "../ibge.json"))
 
-def get():
-    try:
-        with open(caminho_json, "r", encoding="utf-8") as file:
-            dados = json.load(file)
-            nomeLinks = list(dados['links'].keys())
-            links = list(dados['links'].values())
+class get:
+    def __init__(self):
+        self.links = None
+        self.nomeLinks = None
 
-
-    except FileNotFoundError:
-        print(f'Arquivo {caminho_json} não encontrado.')
-        return
-
-    except KeyError:
-        print(f'Chave dos Links não encontrada no arquivo JSON.')
-        return
-
-    except ValueError:
-        print(f'O link não foi encontrado no arquivo JSON.')
-        return
-
-    s = Session()
-    try:
-        for i in range(len(links)):
-            req = Request("GET", links[i])
-            prepped = s.prepare_request(req)
-            resp = s.send(prepped)
-            print(f"O retorno da api {nomeLinks[i]} foi: {resp.status_code}")
-            with open(caminho_json, "r", encoding='utf-8') as file:
+    def load_json(self):
+        try:
+            with open(caminho_json, "r", encoding="utf-8") as file:
                 dados = json.load(file)
-                dados_json = pd.read_json(links[i])
-                df = pd.DataFrame(dados_json)
-                df.to_csv(f'../data/{nomeLinks[i]}.csv', sep=',', decimal=';', encoding='utf-8', index=False)
-                print(f'Baixou {nomeLinks[i]}')
-    except Exception as e:
-        print('Deu problema na requisição', e)
-    s.close()
+                self.nomeLinks = list(dados['links'].keys())
+                self.links = list(dados['links'].values())
+
+        except FileNotFoundError:
+            print(f'Arquivo {caminho_json} não encontrado.')
+
+        except KeyError:
+            print(f'Chave dos Links não encontrada no arquivo JSON.')
+
+        except ValueError:
+            print(f'O link não foi encontrado no arquivo JSON.')
+
+    def fetch_data(self):
+        s = Session()
+        try:
+            for i in range(len(self.links)):
+                req = Request("GET", self.links[i])
+                prepped = s.prepare_request(req)
+                resp = s.send(prepped)
+                print(f"O retorno da api {self.nomeLinks[i]} foi: {resp.status_code}")
+        except Exception as e:
+            print('Deu problema na requisição', e)
+        s.close()
+
+    def loadAllMethods(self):
+        self.load_json()
+        self.fetch_data()
+        
 
