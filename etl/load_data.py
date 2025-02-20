@@ -1,7 +1,9 @@
 import psycopg2
 from config.database import database_info
 
-def load():
+class load:
+    def __init__(self):
+        pass
 
     conn = psycopg2.connect(host=database_info['host'],
                             port=database_info['port'],
@@ -18,7 +20,3 @@ def load():
     conn.close()
     print('desconectou do banco')
 
-print(database_info)
-
-if __name__ == "__main__":
-    load()
