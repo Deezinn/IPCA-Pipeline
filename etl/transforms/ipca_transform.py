@@ -14,6 +14,7 @@ class transform:
         self.data = None
         self.links = None
         self.nomeLinks = None
+        self.colunas = ['Nivel Territorial Codigo', 'Nivel Territorial', 'Unidade de Medida Codigo','Unidade de Medida', 'Valor', 'Brasil Codigo', 'Pais', 'Variavel Codigo', 'Variavel', 'Mes Codigo', 'Mes']
 
     def transform(self):
         with open(caminho_json, "r", encoding="utf-8") as file:
@@ -28,7 +29,9 @@ class transform:
                 response.raise_for_status()
                 self.data = response.json()
                 self.dataframe = pd.json_normalize(self.data)
-                print(self.dataframe)
+                self.dataframe.columns = self.dataframe.iloc[0]
+                self.dataframe = self.dataframe[1:].reset_index(drop=True)
+                self.dataframe.columns = self.colunas
 
         except Exception as e:
             print('Deu problema na requisição', e)
