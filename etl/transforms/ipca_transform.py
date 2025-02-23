@@ -27,9 +27,9 @@ class transform(Get):
             datasets.columns = self.colunas
             datasets.drop(columns=self.colunasRemovidas, inplace=True)
             datasets['Ano'] = datasets['Mes'].str[-4:]
-            datasets['Mes'] = datasets['Mes'].str[:-5].map(self.mesesNumeros).fillna(datasets['Mes'])
+            datasets['Mes'] = datasets['Mes'].str[-15:-4].map(self.mesesNumeros).fillna(datasets['Mes'])
             datasets['Data'] = datasets['Ano'] + '-' + datasets['Mes'] + '-01'
             datasets.drop(columns=['Ano', 'Mes'], inplace=True)
             self.dataframes[i] = datasets
-            df = pd.DataFrame(self.dataframes[i])
-            print(df)
+            print(self.dataframes[i])
+
