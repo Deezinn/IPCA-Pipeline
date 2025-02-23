@@ -40,15 +40,16 @@ class transform:
                 meses_df = self.dataframe['Mes'].str[-15:-4]
 
 
-                for i, mes in enumerate(meses_df):
-                    for chave, valor in self.mesesNumeros.items():
-                        if chave in mes:
-                            self.dataframe.loc[i, 'Mes'] = valor
-                            break
+            for i, mes in enumerate(meses_df):
+                for chave, valor in self.mesesNumeros.items():
+                    if chave in mes:
+                        self.dataframe.loc[i, 'Mes'] = valor
+                        break
 
-                self.dataframe['Data'] = self.dataframe['Ano'] + '-' + self.dataframe['Mes'] + '-' + '1'
-                del self.dataframe['Ano']
-                del self.dataframe['Mes']
+            self.dataframe['Data'] = self.dataframe['Ano'] + '-' + self.dataframe['Mes'] + '-' + '1'
+            del self.dataframe['Ano']
+            del self.dataframe['Mes']
+            
         except Exception as e:
             print('Deu problema na requisição', e)
         s.close()
