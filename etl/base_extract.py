@@ -39,6 +39,7 @@ class Get:
             print(f"Erro HTTP: {err}")
         except requests.exceptions.RequestException as err:
             print(f"Erro na requisição: {err}")
+            
     def loadAllMethods(self):
         self.load_json()
         self.fetch_data()

@@ -1,10 +1,11 @@
 import psycopg2
 from config.database import database_info
-from transforms.ipca_transform import transform
+from etl.transforms.ipca_transform import transform
 
 class load(transform):
-    def __init__(self):
-        pass
+    def __init__(self, dataframes=None):
+        super().__init__()
+        self.dataframes = dataframes
 
     conn = psycopg2.connect(host=database_info['host'],
                             port=database_info['port'],
@@ -15,7 +16,7 @@ class load(transform):
 
     cur = conn.cursor()
 
-    # aqui ficará o insert dos dados tratados em csv
+    #aqui ficará o insert dos dados tratados em csv
 
     cur.close()
     conn.close()

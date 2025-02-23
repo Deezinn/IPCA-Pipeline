@@ -2,7 +2,7 @@ import pandas as pd
 import json
 import os
 import requests
-from base_extract import Get
+from etl.base_extract import Get
 
 
 class transform(Get):
@@ -31,3 +31,5 @@ class transform(Get):
             datasets['Data'] = datasets['Ano'] + '-' + datasets['Mes'] + '-01'
             datasets.drop(columns=['Ano', 'Mes'], inplace=True)
             self.dataframes[i] = datasets
+            df = pd.DataFrame(self.dataframes[i])
+            print(df)
