@@ -9,7 +9,6 @@ class transform(Get):
     def __init__(self, dataframes=None):
         super().__init__()
         self.dataframes = dataframes
-
         self.colunas = [
             'Nivel Territorial Codigo', 'Nivel Territorial', 'Unidade de Medida Codigo', 'Unidade de Medida',
             'Valor', 'Brasil Codigo', 'Pais', 'Variavel Codigo', 'Variavel', 'Mes Codigo', 'Mes'
@@ -19,6 +18,7 @@ class transform(Get):
             'julho ': '7', 'agosto ': '8', 'setembro ': '9', 'outubro ': '10', 'novembro ': '11', 'dezembro ': '12'
         }
         self.colunasRemovidas = ['Nivel Territorial Codigo', 'Unidade de Medida Codigo', 'Brasil Codigo', 'Mes Codigo', 'Variavel Codigo']
+        self.dataTratado = []
 
     def transformar(self):
         for i, datasets in enumerate(self.dataframes):

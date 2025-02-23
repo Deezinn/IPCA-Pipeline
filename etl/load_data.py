@@ -7,18 +7,21 @@ class load(transform):
         super().__init__()
         self.dataframes = dataframes
 
-    conn = psycopg2.connect(host=database_info['host'],
-                            port=database_info['port'],
-                            user=database_info['user'],
-                            password=database_info['password'],
-                            dbname=database_info['dbname'],)
-    print('conectou')
+    def insert_data(self):
+     conn = psycopg2.connect(host=database_info['host'],
+                             port=database_info['port'],
+                             user=database_info['user'],
+                             password=database_info['password'],
+                             dbname=database_info['dbname'],)
+     for datasets in self.dataframes:
+        print(datasets)
 
-    cur = conn.cursor()
+    #  print('conectou')
 
-    #aqui ficará o insert dos dados tratados em csv
+    #  cur = conn.cursor()
 
-    cur.close()
-    conn.close()
-    print('desconectou do banco')
+
+    #  cur.close()
+    #  conn.close()
+    #  print('desconectou do banco')
 
