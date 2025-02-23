@@ -1,7 +1,8 @@
 import psycopg2
 from config.database import database_info
+from transforms.ipca_transform import transform
 
-class load:
+class load(transform):
     def __init__(self):
         pass
 
