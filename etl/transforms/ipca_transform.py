@@ -49,9 +49,6 @@ class transform:
                 self.dataframe['Data'] = self.dataframe['Ano'] + '-' + self.dataframe['Mes'] + '-' + '1'
                 del self.dataframe['Ano']
                 del self.dataframe['Mes']
-                print(self.dataframe)
-
-                
         except Exception as e:
             print('Deu problema na requisição', e)
         s.close()
