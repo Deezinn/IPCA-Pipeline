@@ -31,5 +31,4 @@ class transform(Get):
             datasets['Data'] = datasets['Ano'] + '-' + datasets['Mes'] + '-01'
             datasets.drop(columns=['Ano', 'Mes'], inplace=True)
             self.dataframes[i] = datasets
-            print(self.dataframes[i])
-
+            

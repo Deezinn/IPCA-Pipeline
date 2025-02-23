@@ -11,6 +11,7 @@ class ETLPipeline():
     def runPipeline(self):
         self.get.loadAllMethods()
         self.transform.transformar()
+        self.load.insert_data()
 
 
 pipeline = ETLPipeline()
