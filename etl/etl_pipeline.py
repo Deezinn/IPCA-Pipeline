@@ -1,18 +1,17 @@
-from base_extract import get
+from base_extract import Get
 from transforms.ipca_transform import transform
-from base_extract import get
-# from load_data import load
+from load_data import load
 
-class ETLPipeline(get, transform):
+class ETLPipeline():
     def __init__(self):
-        self.get = get()
-        self.transform = transform()
+        self.get = Get()
+        self.get.loadAllMethods()
+        self.transform = transform(self.get.dataframes)
+        self.load = transform(self.transform.dataframes)
 
     def runPipeline(self):
-        # self.get.loadAllMethods()
-        self.transform.loadAllMethods()
-
-
+        self.transform.transformar()
+        print(self.transform.dataframes)
 
 pipeline = ETLPipeline()
 pipeline.runPipeline()
