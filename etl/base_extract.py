@@ -18,7 +18,6 @@ class Get:
                 dados = json.load(file)
                 self.nomeLinks = list(dados['links'].keys())
                 self.links = list(dados['links'].values())
-
         except FileNotFoundError:
             print(f'Arquivo {caminho_json} não encontrado.')
         except KeyError:
@@ -33,13 +32,11 @@ class Get:
                 self.dataJson = response.json()
                 self.dataTratado = pd.json_normalize(self.dataJson)
                 self.dataframes.append(self.dataTratado)
-        except Exception as e:
-            print('Deu problema na requisição', e)
         except requests.exceptions.HTTPError as err:
             print(f"Erro HTTP: {err}")
         except requests.exceptions.RequestException as err:
             print(f"Erro na requisição: {err}")
-            
+
     def loadAllMethods(self):
         self.load_json()
         self.fetch_data()
