@@ -6,14 +6,14 @@ class transform(Get):
         super().__init__()
         self.dataframes = dataframes
         self.colunas = [
-            'Nivel Territorial Codigo', 'Nivel Territorial', 'Unidade de Medida Codigo', 'Unidade de Medida',
-            'Valor', 'Brasil Codigo', 'Pais', 'Variavel Codigo', 'Variavel', 'Mes Codigo', 'Mes'
+            'Nivel_Territorial_Codigo', 'Nivel_Territorial', 'Unidade_de_Medida_Codigo', 'Unidade_de_Medida',
+            'Valor', 'Brasil_Codigo', 'Pais', 'Variavel_Codigo', 'Variavel', 'Mes_Codigo', 'Mes'
         ]
         self.mesesNumeros = {
             'janeiro ': '1', 'fevereiro ': '2', 'março ': '3', 'abril ': '4', 'maio ': '5', 'junho ': '6',
             'julho ': '7', 'agosto ': '8', 'setembro ': '9', 'outubro ': '10', 'novembro ': '11', 'dezembro ': '12'
         }
-        self.colunasRemovidas = ['Nivel Territorial Codigo', 'Unidade de Medida Codigo', 'Brasil Codigo', 'Mes Codigo', 'Variavel Codigo']
+        self.colunasRemovidas = ['Nivel_Territorial_Codigo', 'Unidade_de_Medida_Codigo', 'Brasil_Codigo', 'Mes_Codigo', 'Variavel_Codigo']
         self.dataTratado = []
 
     def transformar(self):
@@ -25,6 +25,8 @@ class transform(Get):
             datasets['Ano'] = datasets['Mes'].str[-4:]
             datasets['Mes'] = datasets['Mes'].str[-15:-4].map(self.mesesNumeros).fillna(datasets['Mes'])
             datasets['Data'] = datasets['Ano'] + '-' + datasets['Mes'] + '-01'
+            datasets['Data'] = pd.to_datetime(datasets['Data'])
             datasets.drop(columns=['Ano', 'Mes'], inplace=True)
+            datasets['Valor'] = pd.to_numeric(datasets['Valor'], errors='coerce')
+            datasets['Valor'] = datasets['Valor'].fillna(0)
             self.dataframes[i] = datasets
-
