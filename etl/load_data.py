@@ -16,7 +16,6 @@ class load(transform):
         """Cria as tabelas se não existirem."""
         create_table_query = """
         CREATE TABLE IF NOT EXISTS {} (
-            id SERIAL PRIMARY KEY,
             Valor NUMERIC,
             Data DATE
         );
