@@ -1,0 +1,7 @@
+IPCA118_d = Tabela 118 - IPCA dessazonalizado
+IPCA1737_nI = Tabela 1737 - IPCA número-índice
+IPCA1737_vM = Tabela 1737 - IPCA variação mensal
+IPCA1737_a3m = Tabela 1737 - IPCA variação acumulada 3 meses
+IPCA1737_a6m = Tabela 1737 - IPCA variação acumulada 6 meses
+IPCA1737_vAA = Tabela 1737 - IPCA variação acumulada no ano
+IPCA1737_v12m = Tabela 1737 - IPCA variação em 12 meses
