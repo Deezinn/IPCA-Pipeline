@@ -17,11 +17,7 @@ class load(transform):
         create_table_query = """
         CREATE TABLE IF NOT EXISTS {} (
             id SERIAL PRIMARY KEY,
-            Nivel_Territorial TEXT,
-            Unidade_de_Medida TEXT,
             Valor NUMERIC,
-            Pais TEXT,
-            Variavel TEXT,
             Data DATE
         );
         """
