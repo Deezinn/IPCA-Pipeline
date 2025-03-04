@@ -13,7 +13,7 @@ class transform(Get):
             'janeiro ': '1', 'fevereiro ': '2', 'março ': '3', 'abril ': '4', 'maio ': '5', 'junho ': '6',
             'julho ': '7', 'agosto ': '8', 'setembro ': '9', 'outubro ': '10', 'novembro ': '11', 'dezembro ': '12'
         }
-        self.colunasRemovidas = ['Nivel_Territorial_Codigo', 'Unidade_de_Medida_Codigo', 'Brasil_Codigo', 'Mes_Codigo', 'Variavel_Codigo']
+        self.colunasRemovidas = ['Nivel_Territorial_Codigo', 'Unidade_de_Medida_Codigo', 'Brasil_Codigo', 'Mes_Codigo', 'Variavel_Codigo', 'Unidade_de_Medida', 'Pais', 'Variavel', 'Nivel_Territorial']
         self.dataTratado = []
 
     def transformar(self):
